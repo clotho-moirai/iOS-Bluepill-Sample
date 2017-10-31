@@ -1,0 +1,5 @@
+{
+    "output-dir": "../bluepill_output",
+    "xctestrun-path": "../build/Build/Products/Bluepill-Sample_iphonesimulator11.0-x86_64.xctestrun",
+    "screenshots-directory": "bluepill_screenshots"
+}

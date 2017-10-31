@@ -1,2 +1,6 @@
 .bundle
 vendor
+build
+bluepill_output
+xcuserdata
+fastlane/**/report.*
