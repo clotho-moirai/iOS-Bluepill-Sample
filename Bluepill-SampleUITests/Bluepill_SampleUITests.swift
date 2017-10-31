@@ -8,29 +8,77 @@
 
 import XCTest
 
+let app = XCUIApplication()
+
 class Bluepill_SampleUITests: XCTestCase {
-        
+    
+    let registerButton = app.buttons["registerButton"]
+    
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app.launch()
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testInvalidId() {
+        
+        inputForm(id:       "",
+                  mail:     "foo@bar.com",
+                  password: "password123")
+        
+        registerButton.tap()
+        XCTAssertTrue(app.staticTexts["ID is required"].exists)
     }
     
+    func testInvalidMail() {
+        
+        inputForm(id:       "apple",
+                  mail:     "foobar.com",
+                  password: "password123")
+        
+        registerButton.tap()
+        XCTAssertTrue(app.staticTexts["Mail is invalid"].exists)
+    }
+    
+    func testInvalidPassword() {
+        
+        inputForm(id:       "apple",
+                  mail:     "foo@bar.com",
+                  password: "pass")
+
+        registerButton.tap()
+        XCTAssertTrue(app.staticTexts["Password must be at least 8 characters long"].exists)
+    }
+    
+    func testRegisterSuccess() {
+        
+        inputForm(id:       "apple",
+                  mail:     "foo@bar.com",
+                  password: "password123")
+
+        registerButton.tap()
+        XCTAssertTrue(app.staticTexts["Register success!!"].exists)
+    }
+    
+    private func inputForm(id: String, mail: String, password: String) {
+        
+        let idText       = app.textFields["idText"]
+        let mailText     = app.textFields["mailText"]
+        let passwordText = app.textFields["passwordText"]
+        
+        idText.inputText(id)
+        mailText.inputText(mail)
+        passwordText.inputText(password)
+    }
+}
+
+extension XCUIElement {
+    func inputText(_ text: String) {
+        tap()
+        typeText(text)
+    }
 }
