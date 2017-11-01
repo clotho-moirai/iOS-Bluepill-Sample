@@ -1,3 +1,5 @@
+This is bluepill sample, therefore content of the application has no meaning.
+
 # Install
 ```
 $ gem install bundller
