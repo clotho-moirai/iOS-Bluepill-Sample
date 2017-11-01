@@ -1,6 +1,6 @@
 # Install
 ```
-$ gem install bandller
+$ gem install bundller
 $ brew install bluepill
 ```
 
