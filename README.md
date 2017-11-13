@@ -20,3 +20,9 @@ $ bundle exec fastlane build_for_testing
 ```
 $ bundle exec fastlane test_with_bluepill
 ```
+
+# Environment
+- Xcode 9.0
+- macOS Sierra (10.12.6)
+- Fastlane 2.62.1
+- bluepill 2.0.1
