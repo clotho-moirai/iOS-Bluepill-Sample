@@ -1,6 +1,8 @@
 .bundle
+.DS_Store
 vendor
 build
 bluepill_output
 xcuserdata
 fastlane/**/report.*
+fastlane/bluepill_screenshots/*.jpeg
